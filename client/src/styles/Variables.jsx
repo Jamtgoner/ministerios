@@ -5,7 +5,7 @@ export const v = {
   mdSpacing: `16px`,
   lgSpacing: `24px`,
   xlSpacing: `32px`,
-  xxlSpacing: `58px`,
+  xxlSpacing: `620px`,
   borderRadius: `6px`,
   /* light */
   lightbackground: `linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%)`,

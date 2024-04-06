@@ -1,10 +1,9 @@
 import MyRoutes from "./routers/MyRoutes";
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { BrowserRouter } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
 import { Light, Dark } from "./styles/Themes";
-import { ThemeProvider } from "styled-components";
 
 export const ThemeContext = React.createContext(null);
 
@@ -34,7 +33,7 @@ function App() {
 const Container = styled.div`
   display: grid;
   grid-template-columns: 90px auto;
-  background: ${({ theme }) => theme.bgtotal};
+  background: ${({ theme }) => theme.background};
   transition: all 0.3s;
   &.active {
     grid-template-columns: 300px auto;

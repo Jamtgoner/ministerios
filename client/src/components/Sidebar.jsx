@@ -3,8 +3,7 @@ import logo from "../assets/react.svg";
 import { v } from "../styles/Variables";
 import { AiOutlineLeft, AiOutlineHome } from "react-icons/ai";
 import { BsPeopleFill } from "react-icons/bs";
-import { FaPeopleRoof, FaMoneyCheckDollar } from "react-icons/fa6";
-import { GrTransaction } from "react-icons/gr";
+import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
@@ -14,7 +13,9 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const ModSidebaropen = () => {
     setSidebarOpen(!sidebarOpen);
   };
+
   const { setTheme, theme } = useContext(ThemeContext);
+
   const CambiarTheme = () => {
     setTheme((theme) => (theme === "light" ? "dark" : "light"));
   };
@@ -90,19 +91,9 @@ const linksArray = [
     to: "/feligreses",
   },
   {
-    label: "Parentescos",
-    icon: <FaPeopleRoof />,
-    to: "/parentescos",
-  },
-  {
     label: "Contabilidad",
     icon: <FaMoneyCheckDollar />,
     to: "/contabilidad",
-  },
-  {
-    label: "Transacciones",
-    icon: <GrTransaction />,
-    to: "/transacciones",
   },
 ];
 const secondarylinksArray = [
@@ -120,6 +111,7 @@ const Container = styled.div`
   background: ${(props) => props.theme.bg};
   position: sticky;
   padding-top: 20px;
+  margin-right: 10px;
   .Sidebarbutton {
     position: absolute;
     top: ${v.xxlSpacing};
