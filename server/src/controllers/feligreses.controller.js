@@ -34,6 +34,36 @@ export const getFeligres = async (req, res, next) => {
   }
 };
 
+export const getFeligresFam = async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  try {
+    const { id } = req.params;
+    const { rows } = await poolPG.query(
+      `SELECT 
+      fr.nombre AS "Familiar",
+        CASE 
+          WHEN r.sub_parent AND fr.sexo = 'M' THEN p.sub_parent_m
+          WHEN r.sub_parent AND fr.sexo = 'F' THEN p.sub_parent_f
+          ELSE p.parentesco
+      END AS "Parentesco"
+  FROM feligreses f
+  JOIN relacion_parentesco r ON f.id_feligres = r.id_pfeligres
+  JOIN feligreses fr ON (f.id_feligres = r.id_pfeligres AND fr.id_feligres = r.id_sfeligres)
+  JOIN parentesco p ON r.id_parentesco = p.id_parentesco
+  WHERE f.id_feligres = $1`,
+      [id]
+    );
+
+    if (!rows || rows.length === 0) {
+      return res.status(404).json({ error: "No se encontraron resultados" });
+    }
+
+    res.json(rows);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const createFeligres = async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   try {
