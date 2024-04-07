@@ -8,13 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
-import ModalD from "./ModalD";
 
-export default function TableF() {
+export default function TableFeligres() {
   const [feligreses, setFeligreses] = useState([]);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   const loadFeligreses = async () => {
     try {
@@ -30,27 +26,6 @@ export default function TableF() {
     loadFeligreses();
   }, []);
 
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.headerTable,
-      color: "#ffffff",
-      fontSize: 17,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-
-  const StyledTableRow = styled(TableRow)(() => ({
-    "&:nth-of-type(odd)": {
-      backgroundColor: "#fafafa",
-    },
-    // hide last border
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
-  }));
-
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="feligreses table">
@@ -61,7 +36,6 @@ export default function TableF() {
             <StyledTableCell align="center">Telefono</StyledTableCell>
             <StyledTableCell align="center">Correo</StyledTableCell>
             <StyledTableCell align="center">Sexo</StyledTableCell>
-            <StyledTableCell align="center">Acciones</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -74,30 +48,6 @@ export default function TableF() {
               <StyledTableCell align="center">{row.telefono}</StyledTableCell>
               <StyledTableCell align="center">{row.correo}</StyledTableCell>
               <StyledTableCell align="center">{row.sexo}</StyledTableCell>
-
-              <StyledTableCell align="center">
-                <a href="#" className="view" title="View" data-toggle="tooltip">
-                  <i className="material-icons visibility">visibility</i>
-                </a>
-                <a href="#" className="edit" title="Edit" data-toggle="tooltip">
-                  <i className="material-icons">edit</i>
-                </a>
-                <a
-                  href="#"
-                  className="delete"
-                  title="Delete"
-                  data-toggle="tooltip"
-                  onClick={handleOpen}
-                >
-                  <i className="material-icons">delete</i>
-                </a>
-                <ModalD
-                  open={open}
-                  onClose={handleClose}
-                  accionBotonSi={handleClose}
-                  accionBotonNo={handleClose}
-                />
-              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -105,3 +55,24 @@ export default function TableF() {
     </TableContainer>
   );
 }
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.headerTable,
+    color: "#ffffff",
+    fontSize: 17,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(() => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: "#fafafa",
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));

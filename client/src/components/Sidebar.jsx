@@ -21,7 +21,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
   };
 
   return (
-    <Container isOpen={sidebarOpen} themeUse={theme}>
+    <Container isopen={sidebarOpen} themeuse={theme}>
       <button className="Sidebarbutton" onClick={ModSidebaropen}>
         <AiOutlineLeft />
       </button>
@@ -127,7 +127,7 @@ const Container = styled.div`
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s;
-    transform: ${({ isOpen }) => (isOpen ? `initial` : `rotate(180deg)`)};
+    transform: ${({ isopen }) => (isopen ? `initial` : `rotate(180deg)`)};
     border: solid 1px;
     letter-spacing: inherit;
     color: inherit;
@@ -151,10 +151,10 @@ const Container = styled.div`
       }
       cursor: pointer;
       transition: all 0.3s;
-      transform: ${({ isOpen }) => (isOpen ? `scale(0.7)` : `scale(1.5)`)};
+      transform: ${({ isopen }) => (isopen ? `scale(0.7)` : `scale(1.5)`)};
     }
     h2 {
-      display: ${({ isOpen }) => (isOpen ? `block` : `none`)};
+      display: ${({ isopen }) => (isopen ? `block` : `none`)};
     }
   }
   .LinkContainer {
@@ -196,13 +196,13 @@ const Container = styled.div`
       display: block;
       padding: 10px;
       font-weight: 700;
-      opacity: ${({ isOpen }) => (isOpen ? `1` : `0`)};
+      opacity: ${({ isopen }) => (isopen ? `1` : `0`)};
       transition: all 0.3s;
       white-space: nowrap;
       overflow: hidden;
     }
     .Togglecontent {
-      margin: ${({ isOpen }) => (isOpen ? `auto 40px` : `auto 15px`)};
+      margin: ${({ isopen }) => (isopen ? `auto 40px` : `auto 15px`)};
       width: 36px;
       height: 20px;
       border-radius: 10px;
@@ -243,8 +243,8 @@ const Container = styled.div`
               left: 0;
               right: 0;
               bottom: 0;
-              background: ${({ themeUse }) =>
-                themeUse === "light" ? v.lightcheckbox : v.checkbox};
+              background: ${({ themeuse }) =>
+                themeuse === "light" ? v.lightcheckbox : v.checkbox};
 
               transition: 0.4s;
               &::before {
