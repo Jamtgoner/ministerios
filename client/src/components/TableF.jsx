@@ -12,9 +12,32 @@ import ModalD from "./ModalD";
 
 export default function TableF() {
   const [feligreses, setFeligreses] = useState([]);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState(false);
+  const [selectedFeligres, setSelectedFeligres] = useState(null);
+
+  const handleOpen = (feligres) => {
+    setOpen(true);
+    setSelectedFeligres(feligres);
+  };
+
+  const handleDelete = async (feligres) => {
+    const response = await fetch(
+      `http://localhost:3000/feligres/${feligres.id_feligres}`,
+      {
+        method: "DELETE",
+      }
+    );
+    console.log(response);
+    setFeligreses(
+      feligreses.filter((item) => item.id_feligres !== feligres.id_feligres)
+    );
+    setOpen(false);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedFeligres(null);
+  };
 
   const loadFeligreses = async () => {
     try {
@@ -66,7 +89,7 @@ export default function TableF() {
         </TableHead>
         <TableBody>
           {feligreses.map((row) => (
-            <StyledTableRow key={row.id}>
+            <StyledTableRow key={row.id_feligres}>
               <StyledTableCell align="center">
                 {`${row.nombre} ${row.p_apellido} ${row.s_apellido}`}
               </StyledTableCell>
@@ -76,26 +99,31 @@ export default function TableF() {
               <StyledTableCell align="center">{row.sexo}</StyledTableCell>
 
               <StyledTableCell align="center">
-                <a href="#" className="view" title="View" data-toggle="tooltip">
+                <a
+                  className="view"
+                  title="View"
+                  data-toggle="tooltip"
+                  onClick={() => console.log(row)}
+                >
                   <i className="material-icons visibility">visibility</i>
                 </a>
-                <a href="#" className="edit" title="Edit" data-toggle="tooltip">
+                <a className="edit" title="Edit" data-toggle="tooltip">
                   <i className="material-icons">edit</i>
                 </a>
                 <a
-                  href="#"
                   className="delete"
                   title="Delete"
                   data-toggle="tooltip"
-                  onClick={handleOpen}
+                  onClick={() => handleOpen(row)}
                 >
                   <i className="material-icons">delete</i>
                 </a>
                 <ModalD
                   open={open}
                   onClose={handleClose}
-                  accionBotonSi={handleClose}
+                  accionBotonSi={() => handleDelete(selectedFeligres)}
                   accionBotonNo={handleClose}
+                  feligres={selectedFeligres}
                 />
               </StyledTableCell>
             </StyledTableRow>

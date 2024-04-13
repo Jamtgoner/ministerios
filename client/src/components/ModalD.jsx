@@ -13,7 +13,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 500,
+  width: 550,
   bgcolor: "background.paper",
   boxShadow: 2,
   p: 4,
@@ -47,8 +47,10 @@ export default function ModalD({
   handleClose,
   accionBotonSi,
   accionBotonNo,
-  feligres = "Indefinido",
+  feligres,
 }) {
+  const { nombre = "", p_apellido = "", s_apellido = "" } = feligres || {};
+
   return (
     <Modal
       open={open}
@@ -67,7 +69,8 @@ export default function ModalD({
           Eliminación de Feligres
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Esta a punto de eliminar el feligres {feligres}. Esta acción es
+          Esta a punto de eliminar el feligres{" "}
+          {`${nombre} ${p_apellido} ${s_apellido}`}. Esta acción es
           irreversible, esta seguro que desea continuar?
         </Typography>
         <Stack
