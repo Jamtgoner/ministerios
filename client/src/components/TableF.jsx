@@ -91,7 +91,7 @@ export default function TableF() {
           {feligreses.map((row) => (
             <StyledTableRow key={row.id_feligres}>
               <StyledTableCell align="center">
-                {`${row.nombre} ${row.p_apellido} ${row.s_apellido}`}
+                {`${row.nombre} ${row.p_apellido} ${row.s_apellido || ""}`}
               </StyledTableCell>
               <StyledTableCell align="center">{row.direccion}</StyledTableCell>
               <StyledTableCell align="center">{row.telefono}</StyledTableCell>

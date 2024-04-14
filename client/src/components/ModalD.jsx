@@ -70,7 +70,7 @@ export default function ModalD({
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           Esta a punto de eliminar el feligres{" "}
-          {`${nombre} ${p_apellido} ${s_apellido}`}. Esta acción es
+          {`${nombre} ${p_apellido} ${s_apellido || ""}`}. Esta acción es
           irreversible, esta seguro que desea continuar?
         </Typography>
         <Stack
