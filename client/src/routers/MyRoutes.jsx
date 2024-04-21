@@ -5,6 +5,7 @@ import Feligres from "../pages/Feligres";
 import Parentescos from "../pages/Parentescos";
 import Transacciones from "../pages/Transacciones";
 import Contabilidad from "../pages/Contabilidad";
+import NotFound from "../pages/NotFound";
 
 function MyRoutes() {
   return (
@@ -17,6 +18,7 @@ function MyRoutes() {
         <Route path="/parentescos" element={<Parentescos />} />
         <Route path="/transacciones" element={<Transacciones />} />
         <Route path="/contabilidad" element={<Contabilidad />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

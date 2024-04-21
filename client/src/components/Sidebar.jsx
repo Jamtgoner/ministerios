@@ -2,9 +2,10 @@ import styled from "styled-components";
 import logo from "../assets/react.svg";
 import { v } from "../styles/Variables";
 import { AiOutlineLeft, AiOutlineHome } from "react-icons/ai";
+import { BiSolidChurch } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
-import { MdLogout } from "react-icons/md";
+import { MdLogout, MdGroups, MdOutlineFamilyRestroom } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../App";
@@ -21,7 +22,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
   };
 
   return (
-    <Container isopen={sidebarOpen} themeuse={theme}>
+    <Container isopen={{ sidebarOpen }} themeuse={theme}>
       <button className="Sidebarbutton" onClick={ModSidebaropen}>
         <AiOutlineLeft />
       </button>
@@ -91,6 +92,21 @@ const linksArray = [
     to: "/feligreses",
   },
   {
+    label: "Familias",
+    icon: <MdOutlineFamilyRestroom />,
+    to: "/familias",
+  },
+  {
+    label: "Ministerios",
+    icon: <MdGroups />,
+    to: "/ministerios",
+  },
+  {
+    label: "Iglesias",
+    icon: <BiSolidChurch />,
+    to: "/iglesias",
+  },
+  {
     label: "Contabilidad",
     icon: <FaMoneyCheckDollar />,
     to: "/contabilidad",
@@ -127,7 +143,8 @@ const Container = styled.div`
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s;
-    transform: ${({ isopen }) => (isopen ? `initial` : `rotate(180deg)`)};
+    transform: ${({ isopen }) =>
+      isopen.sidebarOpen ? `initial` : `rotate(180deg)`};
     border: solid 1px;
     letter-spacing: inherit;
     color: inherit;
@@ -141,8 +158,6 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    padding-bottom: ${v.lgSpacing};
     .imgcontent {
       display: flex;
       img {
@@ -151,10 +166,12 @@ const Container = styled.div`
       }
       cursor: pointer;
       transition: all 0.3s;
-      transform: ${({ isopen }) => (isopen ? `scale(0.7)` : `scale(1.5)`)};
+      transform: ${({ isopen }) =>
+        isopen.sidebarOpen ? `scale(0.7)` : `scale(1.5)`};
     }
     h2 {
-      display: ${({ isopen }) => (isopen ? `block` : `none`)};
+      display: ${({ isopen }) => (isopen.sidebarOpen ? `block` : `none`)};
+      font-weight: 700;
     }
   }
   .LinkContainer {
@@ -196,13 +213,14 @@ const Container = styled.div`
       display: block;
       padding: 10px;
       font-weight: 700;
-      opacity: ${({ isopen }) => (isopen ? `1` : `0`)};
+      opacity: ${({ isopen }) => (isopen.sidebarOpen ? `1` : `0`)};
       transition: all 0.3s;
       white-space: nowrap;
       overflow: hidden;
     }
     .Togglecontent {
-      margin: ${({ isopen }) => (isopen ? `auto 40px` : `auto 15px`)};
+      margin: ${({ isopen }) =>
+        isopen.sidebarOpen ? `auto 40px` : `auto 15px`};
       width: 36px;
       height: 20px;
       border-radius: 10px;

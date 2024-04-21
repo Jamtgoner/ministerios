@@ -9,6 +9,28 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
 import ModalD from "./ModalD";
+import { Link } from "react-router-dom";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.headerTable,
+    color: "#ffffff",
+    fontSize: 17,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(() => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: "#fafafa",
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 
 export default function TableF() {
   const [feligreses, setFeligreses] = useState([]);
@@ -53,27 +75,6 @@ export default function TableF() {
     loadFeligreses();
   }, []);
 
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.headerTable,
-      color: "#ffffff",
-      fontSize: 17,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-
-  const StyledTableRow = styled(TableRow)(() => ({
-    "&:nth-of-type(odd)": {
-      backgroundColor: "#fafafa",
-    },
-    // hide last border
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
-  }));
-
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="feligreses table">
@@ -99,25 +100,32 @@ export default function TableF() {
               <StyledTableCell align="center">{row.sexo}</StyledTableCell>
 
               <StyledTableCell align="center">
-                <a
-                  className="view"
+                <Link
+                  to={"/feligres"}
+                  role="button"
                   title="View"
                   data-toggle="tooltip"
-                  onClick={() => console.log(row)}
                 >
-                  <i className="material-icons visibility">visibility</i>
-                </a>
-                <a className="edit" title="Edit" data-toggle="tooltip">
+                  <i className="material-icons">visibility</i>
+                </Link>
+                <Link
+                  to={"/feligres"}
+                  role="button"
+                  title="Edit"
+                  data-toggle="tooltip"
+                >
                   <i className="material-icons">edit</i>
-                </a>
-                <a
+                </Link>
+                <Link
                   className="delete"
+                  role="button"
                   title="Delete"
                   data-toggle="tooltip"
                   onClick={() => handleOpen(row)}
                 >
                   <i className="material-icons">delete</i>
-                </a>
+                </Link>
+
                 <ModalD
                   open={open}
                   onClose={handleClose}
