@@ -47,10 +47,9 @@ export default function ModalD({
   handleClose,
   accionBotonSi,
   accionBotonNo,
-  feligres,
+  mensajeGeneral,
+  titulo,
 }) {
-  const { nombre = "", p_apellido = "", s_apellido = "" } = feligres || {};
-
   return (
     <Modal
       open={open}
@@ -66,12 +65,10 @@ export default function ModalD({
           component="h2"
           align="center"
         >
-          Eliminación de Feligres
+          {titulo}
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Esta a punto de eliminar el feligres{" "}
-          {`${nombre} ${p_apellido} ${s_apellido || ""}`}. Esta acción es
-          irreversible, esta seguro que desea continuar?
+          {mensajeGeneral}
         </Typography>
         <Stack
           spacing={2}

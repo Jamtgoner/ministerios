@@ -131,7 +131,12 @@ export default function TableF() {
                   onClose={handleClose}
                   accionBotonSi={() => handleDelete(selectedFeligres)}
                   accionBotonNo={handleClose}
-                  feligres={selectedFeligres}
+                  titulo={"Eliminacion de Feligres"}
+                  mensajeGeneral={`Esta a punto de eliminar el feligres ${
+                    selectedFeligres?.nombre
+                  } ${selectedFeligres?.p_apellido} ${
+                    selectedFeligres?.s_apellido || ""
+                  }. Esta acción es irreversible, esta seguro que desea continuar?`}
                 />
               </StyledTableCell>
             </StyledTableRow>
