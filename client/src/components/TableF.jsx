@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
 import ModalD from "./ModalD";
+import ModalV from "./ModalV";
 import { Link } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -36,9 +37,11 @@ export default function TableF() {
   const [feligreses, setFeligreses] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedFeligres, setSelectedFeligres] = useState(null);
+  const [modalType, setModalType] = useState(null);
 
-  const handleOpen = (feligres) => {
+  const handleOpen = (feligres, type) => {
     setOpen(true);
+    setModalType(type);
     setSelectedFeligres(feligres);
   };
 
@@ -75,6 +78,40 @@ export default function TableF() {
     loadFeligreses();
   }, []);
 
+  const renderModal = () => {
+    if (modalType === "delete") {
+      return (
+        <ModalD
+          open={open}
+          onClose={handleClose}
+          accionBotonSi={() => handleDelete(selectedFeligres)}
+          accionBotonNo={handleClose}
+          titulo={"Eliminacion de Feligres"}
+          mensajeGeneral={`Esta a punto de eliminar el feligres ${
+            selectedFeligres?.nombre
+          } ${selectedFeligres?.p_apellido} ${
+            selectedFeligres?.s_apellido || ""
+          }. Esta acción es irreversible, esta seguro que desea continuar?`}
+        />
+      );
+    } else if (modalType === "view") {
+      return (
+        <ModalV
+          open={open}
+          onClose={handleClose}
+          accionBotonSi={() => handleDelete(selectedFeligres)}
+          accionBotonNo={handleClose}
+          titulo={"Información de Feligres"}
+          mensajeGeneral={`Esta a punto de eliminar el feligres ${
+            selectedFeligres?.nombre
+          } ${selectedFeligres?.p_apellido} ${
+            selectedFeligres?.s_apellido || ""
+          }. Esta acción es irreversible, esta seguro que desea continuar?`}
+        />
+      );
+    }
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="feligreses table">
@@ -101,18 +138,18 @@ export default function TableF() {
 
               <StyledTableCell align="center">
                 <Link
-                  to={"/feligres"}
                   role="button"
                   title="View"
                   data-toggle="tooltip"
+                  onClick={() => handleOpen(row, "view")}
                 >
                   <i className="material-icons">visibility</i>
                 </Link>
                 <Link
-                  to={"/feligres"}
                   role="button"
                   title="Edit"
                   data-toggle="tooltip"
+                  onClick={() => handleOpen(row, "edit")}
                 >
                   <i className="material-icons">edit</i>
                 </Link>
@@ -121,28 +158,16 @@ export default function TableF() {
                   role="button"
                   title="Delete"
                   data-toggle="tooltip"
-                  onClick={() => handleOpen(row)}
+                  onClick={() => handleOpen(row, "delete")}
                 >
                   <i className="material-icons">delete</i>
                 </Link>
-
-                <ModalD
-                  open={open}
-                  onClose={handleClose}
-                  accionBotonSi={() => handleDelete(selectedFeligres)}
-                  accionBotonNo={handleClose}
-                  titulo={"Eliminacion de Feligres"}
-                  mensajeGeneral={`Esta a punto de eliminar el feligres ${
-                    selectedFeligres?.nombre
-                  } ${selectedFeligres?.p_apellido} ${
-                    selectedFeligres?.s_apellido || ""
-                  }. Esta acción es irreversible, esta seguro que desea continuar?`}
-                />
               </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
+      {renderModal()}
     </TableContainer>
   );
 }
