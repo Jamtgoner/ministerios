@@ -44,7 +44,6 @@ const ButtonNo = styled(Button)(() => ({
 
 export default function ModalD({
   open,
-  handleClose,
   accionBotonSi,
   accionBotonNo,
   mensajeGeneral,
@@ -53,7 +52,6 @@ export default function ModalD({
   return (
     <Modal
       open={open}
-      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       sx={modalstyle}

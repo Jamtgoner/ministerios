@@ -83,7 +83,6 @@ export default function TableF() {
       return (
         <ModalD
           open={open}
-          onClose={handleClose}
           accionBotonSi={() => handleDelete(selectedFeligres)}
           accionBotonNo={handleClose}
           titulo={"Eliminacion de Feligres"}
@@ -98,15 +97,9 @@ export default function TableF() {
       return (
         <ModalV
           open={open}
-          onClose={handleClose}
-          accionBotonSi={() => handleDelete(selectedFeligres)}
-          accionBotonNo={handleClose}
+          actBotonClose={handleClose}
           titulo={"Información de Feligres"}
-          mensajeGeneral={`Esta a punto de eliminar el feligres ${
-            selectedFeligres?.nombre
-          } ${selectedFeligres?.p_apellido} ${
-            selectedFeligres?.s_apellido || ""
-          }. Esta acción es irreversible, esta seguro que desea continuar?`}
+          feligres={selectedFeligres}
         />
       );
     }

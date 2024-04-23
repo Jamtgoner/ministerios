@@ -1,12 +1,12 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import DeleteIcon from "@mui/icons-material/Delete";
-import NotInterestedIcon from "@mui/icons-material/NotInterested";
+import CloseIcon from "@mui/icons-material/Close";
+import { Col, Row } from "antd";
+import { Descriptions } from "antd";
 
 const style = {
   position: "absolute",
@@ -14,7 +14,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "60%",
-  bgcolor: "background.paper",
+  backgroundColor: "#f4f4f4",
   boxShadow: 2,
   p: 4,
   borderRadius: 3,
@@ -26,55 +26,78 @@ const modalstyle = {
   },
 };
 
-const ButtonNo = styled(Button)(() => ({
+const ButtonClose = styled(IconButton)(() => ({
   color: "#fff",
-  backgroundColor: "#4caf50",
+  backgroundColor: "#ff0000",
   "&:hover": {
-    backgroundColor: "#388e3c",
+    backgroundColor: "#df5e5e",
   },
 }));
 
-export default function ModalV({
-  open,
-  handleClose,
-  accionBotonNo,
-  mensajeGeneral,
-  titulo,
-}) {
+export default function ModalV({ open, actBotonClose, titulo, feligres }) {
+  const items = feligres
+    ? [
+        {
+          key: "1",
+          label: "Nombre",
+          children: feligres.nombre,
+        },
+        {
+          key: "2",
+          label: "Apellidos",
+          children: `${feligres.p_apellido} ${feligres.s_apellido || ""}`,
+        },
+        {
+          key: "3",
+          label: "Dirección",
+          children: feligres.direccion,
+        },
+        {
+          key: "4",
+          label: "Telefono",
+          children: feligres.telefono,
+        },
+        {
+          key: "5",
+          label: "Correo",
+          children: feligres.correo,
+        },
+        {
+          key: "6",
+          label: "Sexo",
+          children: feligres.sexo === "M" ? "Masculino" : "Femenino",
+        },
+      ]
+    : [];
+
   return (
     <Modal
       open={open}
-      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       sx={modalstyle}
     >
       <Box sx={style}>
-        <Typography
-          id="modal-modal-title"
-          variant="h6"
-          component="h2"
-          align="center"
-        >
-          {titulo}
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          {mensajeGeneral}
-        </Typography>
-        <Stack
-          spacing={2}
-          justifyContent="center"
-          direction="row"
-          sx={{ mt: 2 }}
-        >
-          <ButtonNo
-            variant="contained"
-            startIcon={<NotInterestedIcon />}
-            onClick={accionBotonNo}
-          >
-            No
-          </ButtonNo>
-        </Stack>
+        <Row>
+          <Col span={24}>
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              align="center"
+              className="mb-4"
+            >
+              {titulo}
+            </Typography>
+          </Col>
+          <Col span={24}>
+            <Descriptions items={items} />
+          </Col>
+          <Col span={12}></Col>
+          <ButtonClose onClick={actBotonClose}>
+            <CloseIcon />
+          </ButtonClose>
+        </Row>
       </Box>
     </Modal>
   );
