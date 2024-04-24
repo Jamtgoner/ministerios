@@ -8,32 +8,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Col, Row } from "antd";
 import { Descriptions } from "antd";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "60%",
-  backgroundColor: "#f4f4f4",
-  boxShadow: 2,
-  p: 4,
-  borderRadius: 3,
-};
-
-const modalstyle = {
-  "& .MuiModal-backdrop": {
-    backgroundColor: "#00000033",
-  },
-};
-
-const ButtonClose = styled(IconButton)(() => ({
-  color: "#fff",
-  backgroundColor: "#ff0000",
-  "&:hover": {
-    backgroundColor: "#df5e5e",
-  },
-}));
-
 export default function ModalV({ open, actBotonClose, titulo, feligres }) {
   const items = feligres
     ? [
@@ -91,7 +65,7 @@ export default function ModalV({ open, actBotonClose, titulo, feligres }) {
             </Typography>
           </Col>
           <Col span={24}>
-            <Descriptions items={items} />
+            <Descriptions className="deta" items={items} />
           </Col>
           <Col span={12}></Col>
           <ButtonClose onClick={actBotonClose}>
@@ -102,3 +76,30 @@ export default function ModalV({ open, actBotonClose, titulo, feligres }) {
     </Modal>
   );
 }
+
+//#region ESTILOS
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "60%",
+  backgroundColor: "#f4f4f4",
+  boxShadow: 2,
+  p: 4,
+  borderRadius: 3,
+};
+
+const modalstyle = {
+  "& .MuiModal-backdrop": {
+    backgroundColor: "#00000033",
+  },
+};
+
+const ButtonClose = styled(IconButton)(() => ({
+  color: "#fff",
+  backgroundColor: "#ff0000",
+  "&:hover": {
+    backgroundColor: "#df5e5e",
+  },
+}));

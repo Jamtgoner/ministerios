@@ -1,4 +1,5 @@
 import MyRoutes from "./routers/MyRoutes";
+import { ConfigProvider } from "antd";
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { BrowserRouter } from "react-router-dom";
@@ -14,19 +15,27 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   return (
     <>
-      <ThemeContext.Provider value={{ setTheme, theme }}>
-        <ThemeProvider theme={themeStyle}>
-          <BrowserRouter>
-            <Container className={sidebarOpen ? "sidebarState active" : ""}>
-              <Sidebar
-                sidebarOpen={sidebarOpen}
-                setSidebarOpen={setSidebarOpen}
-              />
-              <MyRoutes />
-            </Container>
-          </BrowserRouter>
-        </ThemeProvider>
-      </ThemeContext.Provider>
+      <ConfigProvider
+        theme={{
+          token: {
+            fontSize: "18px",
+          },
+        }}
+      >
+        <ThemeContext.Provider value={{ setTheme, theme }}>
+          <ThemeProvider theme={themeStyle}>
+            <BrowserRouter>
+              <Container className={sidebarOpen ? "sidebarState active" : ""}>
+                <Sidebar
+                  sidebarOpen={sidebarOpen}
+                  setSidebarOpen={setSidebarOpen}
+                />
+                <MyRoutes />
+              </Container>
+            </BrowserRouter>
+          </ThemeProvider>
+        </ThemeContext.Provider>
+      </ConfigProvider>
     </>
   );
 }
