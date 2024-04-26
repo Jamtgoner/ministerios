@@ -36,9 +36,9 @@ const ButtonSi = styled(Button)(() => ({
 
 const ButtonNo = styled(Button)(() => ({
   color: "#fff",
-  backgroundColor: "#4caf50",
+  backgroundColor: "#8e8b8b",
   "&:hover": {
-    backgroundColor: "#388e3c",
+    backgroundColor: "#bdbcbc",
   },
 }));
 
@@ -74,13 +74,6 @@ export default function ModalD({
           direction="row"
           sx={{ mt: 2 }}
         >
-          <ButtonSi
-            variant="contained"
-            startIcon={<DeleteIcon />}
-            onClick={accionBotonSi}
-          >
-            Si
-          </ButtonSi>
           <ButtonNo
             variant="contained"
             startIcon={<NotInterestedIcon />}
@@ -88,6 +81,13 @@ export default function ModalD({
           >
             No
           </ButtonNo>
+          <ButtonSi
+            variant="contained"
+            startIcon={<DeleteIcon />}
+            onClick={accionBotonSi}
+          >
+            Si
+          </ButtonSi>
         </Stack>
       </Box>
     </Modal>
