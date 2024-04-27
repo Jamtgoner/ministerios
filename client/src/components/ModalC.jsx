@@ -6,8 +6,9 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 import { Col, Row, Form } from "antd";
+import { useEffect, useState } from "react";
 
-export default function ModalC({ open, actBotonClose, titulo, feligres }) {
+export default function ModalC({ open, handleClose }) {
   return (
     <Modal
       open={open}
@@ -16,7 +17,7 @@ export default function ModalC({ open, actBotonClose, titulo, feligres }) {
       sx={modalstyle}
     >
       <Box sx={style}>
-        <ButtonClose>
+        <ButtonClose onClick={handleClose}>
           <CloseIcon />
         </ButtonClose>
       </Box>
