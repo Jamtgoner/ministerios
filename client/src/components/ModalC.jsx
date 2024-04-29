@@ -1,13 +1,16 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
-import { Col, Row, Form } from "antd";
+import IconButton from "@mui/material/IconButton";
+import { useForm } from "react-hook-form";
+import { Col, Row } from "antd";
 
-export default function ModalC({ open, actBotonClose, titulo, feligres }) {
+export default function ModalC({ open, handleClose }) {
+  const { register } = useForm();
+
   return (
     <Modal
       open={open}
@@ -16,7 +19,34 @@ export default function ModalC({ open, actBotonClose, titulo, feligres }) {
       sx={modalstyle}
     >
       <Box sx={style}>
-        <ButtonClose>
+        <form className="formulario">
+          <label>Nombre</label>
+          <input type="text" name="nombre" {...register("nombre")} />
+
+          <label>Primer Apellido</label>
+          <input type="text" name="p_apellido" {...register("p_apellido")} />
+
+          <label>Segundo Apellido</label>
+          <input type="text" name="s_apeliido" {...register("s_apeliido")} />
+
+          <label>Direccion</label>
+          <input type="text" name="direccion" {...register("direccion")} />
+
+          <label>Telefono</label>
+          <input type="text" name="telefono" {...register("telefono")} />
+
+          <label>Correo</label>
+          <input type="email" name="correo" {...register("correo")} />
+
+          <label htmlFor="sexo">Sexo</label>
+          <select name="sexo" id="sexo" {...register("sexo")}>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+
+          <button type="submit">Enviar</button>
+        </form>
+        <ButtonClose onClick={handleClose}>
           <CloseIcon />
         </ButtonClose>
       </Box>
@@ -31,7 +61,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "60%",
-  backgroundColor: "#f4f4f4",
+  backgroundColor: "#fff",
   boxShadow: 2,
   p: 4,
   borderRadius: 3,

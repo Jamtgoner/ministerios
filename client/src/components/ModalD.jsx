@@ -74,13 +74,6 @@ export default function ModalD({
           direction="row"
           sx={{ mt: 2 }}
         >
-          <ButtonNo
-            variant="contained"
-            startIcon={<NotInterestedIcon />}
-            onClick={accionBotonNo}
-          >
-            No
-          </ButtonNo>
           <ButtonSi
             variant="contained"
             startIcon={<DeleteIcon />}
@@ -88,6 +81,13 @@ export default function ModalD({
           >
             Si
           </ButtonSi>
+          <ButtonNo
+            variant="contained"
+            startIcon={<NotInterestedIcon />}
+            onClick={accionBotonNo}
+          >
+            No
+          </ButtonNo>
         </Stack>
       </Box>
     </Modal>
