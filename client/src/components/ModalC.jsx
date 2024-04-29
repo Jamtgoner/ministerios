@@ -95,26 +95,25 @@ export default function ModalC({ open, handleClose }) {
             <option value="M">Masculino</option>
             <option value="F">Femenino</option>
           </select>
-        </form>
-        <Stack
-          spacing={2}
-          justifyContent="center"
-          direction="row"
-          sx={{ mt: 2 }}
-        >
-          <ButtonSave type="submit">
-            {" "}
-            <SaveIcon />{" "}
-          </ButtonSave>
-          <ButtonClose
-            onClick={() => {
-              handleClose();
-              reset();
-            }}
+          <Stack
+            spacing={2}
+            justifyContent="center"
+            direction="row"
+            sx={{ mt: 2 }}
           >
-            <CloseIcon />
-          </ButtonClose>
-        </Stack>
+            <ButtonSave type="submit">
+              <SaveIcon />
+            </ButtonSave>
+            <ButtonClose
+              onClick={() => {
+                handleClose();
+                reset();
+              }}
+            >
+              <CloseIcon />
+            </ButtonClose>
+          </Stack>
+        </form>
       </Box>
     </Modal>
   );
