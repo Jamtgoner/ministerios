@@ -14,6 +14,7 @@ export function Feligreses() {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <Container className="p-2">
       <h1 className="text-center">Feligreses</h1>

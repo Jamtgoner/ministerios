@@ -1,15 +1,28 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
+import SaveIcon from "@mui/icons-material/Save";
+import Stack from "@mui/material/Stack";
+
 import { useForm } from "react-hook-form";
 import { Col, Row } from "antd";
 
 export default function ModalC({ open, handleClose }) {
-  const { register } = useForm();
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+    handleClose();
+    reset();
+  });
 
   return (
     <Modal
@@ -19,21 +32,60 @@ export default function ModalC({ open, handleClose }) {
       sx={modalstyle}
     >
       <Box sx={style}>
-        <form className="formulario">
+        <form onSubmit={onSubmit} className="formulario">
           <label>Nombre</label>
-          <input type="text" name="nombre" {...register("nombre")} />
+          <input
+            type="text"
+            name="nombre"
+            {...register("nombre", {
+              required: true,
+            })}
+          />
+          {errors.nombre && <span>El nombre es un campo obligatorio</span>}
 
           <label>Primer Apellido</label>
-          <input type="text" name="p_apellido" {...register("p_apellido")} />
+          <input
+            type="text"
+            name="p_apellido"
+            {...register("p_apellido", {
+              required: true,
+            })}
+          />
+          {errors.p_apellido && (
+            <span>El apellido es un campo obligatorio</span>
+          )}
 
           <label>Segundo Apellido</label>
           <input type="text" name="s_apeliido" {...register("s_apeliido")} />
 
           <label>Direccion</label>
-          <input type="text" name="direccion" {...register("direccion")} />
+          <input
+            type="text"
+            name="direccion"
+            {...register("direccion", {
+              required: true,
+            })}
+          />
+          {errors.direccion && (
+            <span>La dirección es un campo obligatorio</span>
+          )}
 
           <label>Telefono</label>
-          <input type="text" name="telefono" {...register("telefono")} />
+          <input
+            type="tel"
+            name="telefono"
+            {...register("telefono", {
+              required: {
+                value: true,
+                message: "El telefono es un campo obligatorio",
+              },
+              pattern: {
+                value: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/,
+                message: "El telefono debe tener el formato 123-456-7890",
+              },
+            })}
+          />
+          {errors.telefono && <span>{errors.telefono.message}</span>}
 
           <label>Correo</label>
           <input type="email" name="correo" {...register("correo")} />
@@ -43,12 +95,26 @@ export default function ModalC({ open, handleClose }) {
             <option value="M">Masculino</option>
             <option value="F">Femenino</option>
           </select>
-
-          <button type="submit">Enviar</button>
         </form>
-        <ButtonClose onClick={handleClose}>
-          <CloseIcon />
-        </ButtonClose>
+        <Stack
+          spacing={2}
+          justifyContent="center"
+          direction="row"
+          sx={{ mt: 2 }}
+        >
+          <ButtonSave type="submit">
+            {" "}
+            <SaveIcon />{" "}
+          </ButtonSave>
+          <ButtonClose
+            onClick={() => {
+              handleClose();
+              reset();
+            }}
+          >
+            <CloseIcon />
+          </ButtonClose>
+        </Stack>
       </Box>
     </Modal>
   );
@@ -78,5 +144,13 @@ const ButtonClose = styled(IconButton)(() => ({
   backgroundColor: "#ff0000",
   "&:hover": {
     backgroundColor: "#df5e5e",
+  },
+}));
+
+const ButtonSave = styled(IconButton)(() => ({
+  color: "#fff",
+  backgroundColor: "#078b1d",
+  "&:hover": {
+    backgroundColor: "#69df5e",
   },
 }));
