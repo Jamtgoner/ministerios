@@ -6,6 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import SaveIcon from "@mui/icons-material/Save";
 import Stack from "@mui/material/Stack";
+import { useHistory } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 import { Col, Row } from "antd";
@@ -18,7 +19,15 @@ export default function ModalC({ open, handleClose }) {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
+    await fetch(`http://localhost:3000/feligres`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
     console.log(data);
     handleClose();
     reset();
@@ -56,7 +65,7 @@ export default function ModalC({ open, handleClose }) {
           )}
 
           <label>Segundo Apellido</label>
-          <input type="text" name="s_apeliido" {...register("s_apeliido")} />
+          <input type="text" name="s_apellido" {...register("s_apellido")} />
 
           <label>Direccion</label>
           <input

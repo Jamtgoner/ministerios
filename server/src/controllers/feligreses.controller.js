@@ -67,11 +67,18 @@ export const getFeligresFam = async (req, res, next) => {
 export const createFeligres = async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   try {
-    const { nombre, p_apellido, s_apellido, direccion, telefono, correo } =
-      req.body;
+    const {
+      nombre,
+      p_apellido,
+      s_apellido,
+      direccion,
+      telefono,
+      correo,
+      sexo,
+    } = req.body;
     await poolPG.query(
-      `INSERT INTO feligreses (nombre, p_apellido, s_apellido, direccion, telefono, correo) VALUES ($1, $2, $3, $4, $5, $6)`,
-      [nombre, p_apellido, s_apellido, direccion, telefono, correo]
+      `INSERT INTO feligreses (nombre, p_apellido, s_apellido, direccion, telefono, correo,sexo) VALUES ($1, $2, $3, $4, $5, $6,$7)`,
+      [nombre, p_apellido, s_apellido, direccion, telefono, correo, sexo]
     );
     res.send("Feligres creado");
   } catch (error) {
