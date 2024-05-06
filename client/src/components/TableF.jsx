@@ -45,20 +45,6 @@ export default function TableF() {
     setSelectedFeligres(feligres);
   };
 
-  const handleDelete = async (feligres) => {
-    const response = await fetch(
-      `http://localhost:3000/feligres/${feligres.id_feligres}`,
-      {
-        method: "DELETE",
-      }
-    );
-    console.log(response);
-    setFeligreses(
-      feligreses.filter((item) => item.id_feligres !== feligres.id_feligres)
-    );
-    setOpen(false);
-  };
-
   const handleClose = () => {
     setOpen(false);
     setSelectedFeligres(null);
@@ -77,6 +63,20 @@ export default function TableF() {
   useEffect(() => {
     loadFeligreses();
   }, []);
+
+  const handleDelete = async (feligres) => {
+    const response = await fetch(
+      `http://localhost:3000/feligres/${feligres.id_feligres}`,
+      {
+        method: "DELETE",
+      }
+    );
+    console.log(response);
+    setFeligreses(
+      feligreses.filter((item) => item.id_feligres !== feligres.id_feligres)
+    );
+    setOpen(false);
+  };
 
   const renderModal = () => {
     if (modalType === "delete") {

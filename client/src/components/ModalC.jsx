@@ -30,6 +30,7 @@ export default function ModalC({ open, handleClose }) {
     console.log(data);
     handleClose();
     reset();
+    window.location.reload(false);
   });
 
   return (
