@@ -41,69 +41,98 @@ export default function ModalC({ open, handleClose }) {
       sx={modalstyle}
     >
       <Box sx={style}>
-        <form onSubmit={onSubmit} className="formulario">
-          <label>Nombre</label>
-          <input
-            type="text"
-            name="nombre"
-            {...register("nombre", {
-              required: true,
-            })}
-          />
-          {errors.nombre && <span>El nombre es un campo obligatorio</span>}
+        <form onSubmit={onSubmit} className="row formulario">
+          <div className="col-md-4">
+            <label>Nombre</label>
+            <input
+              type="text"
+              className="form-control"
+              name="nombre"
+              {...register("nombre", {
+                required: true,
+              })}
+            />
+            {errors.nombre && <span>El nombre es un campo obligatorio</span>}
+          </div>
+          <div className="col-md-4">
+            <label>Primer Apellido</label>
+            <input
+              type="text"
+              className="form-control"
+              name="p_apellido"
+              {...register("p_apellido", {
+                required: true,
+              })}
+            />
+            {errors.p_apellido && (
+              <span>El apellido es un campo obligatorio</span>
+            )}
+          </div>
+          <div className="col-md-4">
+            <label>Segundo Apellido</label>
+            <input
+              type="text"
+              className="form-control"
+              name="s_apellido"
+              {...register("s_apellido")}
+            />
+          </div>
 
-          <label>Primer Apellido</label>
-          <input
-            type="text"
-            name="p_apellido"
-            {...register("p_apellido", {
-              required: true,
-            })}
-          />
-          {errors.p_apellido && (
-            <span>El apellido es un campo obligatorio</span>
-          )}
+          <div className="col-md-12">
+            <label>Direccion</label>
+            <input
+              type="text"
+              className="form-control"
+              name="direccion"
+              {...register("direccion", {
+                required: true,
+              })}
+            />
+            {errors.direccion && (
+              <span>La dirección es un campo obligatorio</span>
+            )}
+          </div>
 
-          <label>Segundo Apellido</label>
-          <input type="text" name="s_apellido" {...register("s_apellido")} />
+          <div className="col-md-4">
+            <label>Telefono</label>
+            <input
+              type="tel"
+              name="telefono"
+              data-inputmask="'mask': '999-999-9999'"
+              inputmode="numeric"
+              className="form-control"
+              {...register("telefono", {
+                required: {
+                  value: true,
+                  message: "El telefono es un campo obligatorio",
+                },
+              })}
+            />
+            {errors.telefono && <span>{errors.telefono.message}</span>}
+          </div>
 
-          <label>Direccion</label>
-          <input
-            type="text"
-            name="direccion"
-            {...register("direccion", {
-              required: true,
-            })}
-          />
-          {errors.direccion && (
-            <span>La dirección es un campo obligatorio</span>
-          )}
+          <div className="col-md-4">
+            <label>Correo</label>
+            <input
+              type="email"
+              name="correo"
+              className="form-control"
+              {...register("correo")}
+            />
+          </div>
 
-          <label>Telefono</label>
-          <input
-            type="tel"
-            name="telefono"
-            {...register("telefono", {
-              required: {
-                value: true,
-                message: "El telefono es un campo obligatorio",
-              },
-              pattern: {
-                value: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/,
-                message: "El telefono debe tener el formato 123-456-7890",
-              },
-            })}
-          />
-          {errors.telefono && <span>{errors.telefono.message}</span>}
-
-          <label>Correo</label>
-          <input type="email" name="correo" {...register("correo")} />
-
-          <label htmlFor="sexo">Sexo</label>
-          <select name="sexo" id="sexo" {...register("sexo")}>
-            <option value="M">Masculino</option>
-            <option value="F">Femenino</option>
-          </select>
+          <div className="col-md-4">
+            <label htmlFor="sexo">Sexo</label>
+            <select
+              name="sexo"
+              id="sexo"
+              className="form-select"
+              {...register("sexo")}
+            >
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+            </select>
+          </div>
           <Stack
             spacing={2}
             justifyContent="center"

@@ -12,18 +12,8 @@
   font-size: 255px;
 }
 
-.formulario label {
-  display: block;
-}
-
 .formulario span {
   display: block;
-  color: tomato;
-  font-size: x-small;
-}
-
-.formulario input,
-select {
-  margin-bottom: 0.3rem;
-  width: 100%;
+  color: rgb(247, 38, 1);
+  font-size: 14px;
 }
