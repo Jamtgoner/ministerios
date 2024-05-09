@@ -6,9 +6,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import SaveIcon from "@mui/icons-material/Save";
 import Stack from "@mui/material/Stack";
+import InputMask from "react-input-mask";
 
 import { useForm } from "react-hook-form";
-import { Col, Row } from "antd";
 
 export default function ModalC({ open, handleClose }) {
   const {
@@ -95,17 +95,14 @@ export default function ModalC({ open, handleClose }) {
 
           <div className="col-md-4">
             <label>Telefono</label>
-            <input
-              type="tel"
-              name="telefono"
-              data-inputmask="'mask': '999-999-9999'"
-              inputmode="numeric"
+
+            <InputMask
+              mask="999-999-9999"
+              maskChar=""
+              placeholder="809-999-9999"
               className="form-control"
               {...register("telefono", {
-                required: {
-                  value: true,
-                  message: "El telefono es un campo obligatorio",
-                },
+                required: "El teléfono es un campo obligatorio",
               })}
             />
             {errors.telefono && <span>{errors.telefono.message}</span>}
@@ -116,6 +113,7 @@ export default function ModalC({ open, handleClose }) {
             <input
               type="email"
               name="correo"
+              placeholder="correo@dominio.com"
               className="form-control"
               {...register("correo")}
             />
