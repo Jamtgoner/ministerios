@@ -10,6 +10,7 @@ import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
 import ModalD from "./ModalD";
 import ModalV from "./ModalV";
+import ModalE from "./ModalE";
 import { Link } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -47,7 +48,6 @@ export default function TableF() {
 
   const handleClose = () => {
     setOpen(false);
-    setSelectedFeligres(null);
   };
 
   const loadFeligreses = async () => {
@@ -99,6 +99,15 @@ export default function TableF() {
           open={open}
           actBotonClose={handleClose}
           titulo={"Información de Feligres"}
+          feligres={selectedFeligres}
+        />
+      );
+    } else if (modalType === "edit") {
+      return (
+        <ModalE
+          open={open}
+          actBotonClose={handleClose}
+          titulo={"Edición de Feligres"}
           feligres={selectedFeligres}
         />
       );
