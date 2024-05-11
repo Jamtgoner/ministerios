@@ -1,4 +1,8 @@
 import { Router } from "express";
+import multer from "multer";
+
+const upload = multer({ dest: "uploads/" });
+
 import {
   getFeligreses,
   getFeligres,
@@ -13,7 +17,7 @@ const router = Router();
 router.get("/feligreses", getFeligreses);
 router.get("/feligres/:id", getFeligres);
 router.get("/feligresf/:id", getFeligresFam);
-router.post("/feligres", createFeligres);
+router.post("/feligres", upload.single("foto"), createFeligres);
 router.delete("/feligres/:id", delFeligres);
 router.put("/feligres/:id", updateFeligres);
 

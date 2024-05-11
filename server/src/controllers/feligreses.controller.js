@@ -1,4 +1,5 @@
 import { poolPG } from "../../db.js";
+import fs from "fs";
 
 export const getFeligreses = async (_req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -20,7 +21,10 @@ export const getFeligres = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { rows } = await poolPG.query(
-      `SELECT * FROM feligreses WHERE id_feligres = $1`,
+      `SELECT *,
+       ENCODE(foto, 'base64') AS profile
+       FROM feligreses
+       WHERE id_feligres = $1`,
       [id]
     );
 
@@ -76,11 +80,30 @@ export const createFeligres = async (req, res, next) => {
       correo,
       sexo,
     } = req.body;
-    await poolPG.query(
-      `INSERT INTO feligreses (nombre, p_apellido, s_apellido, direccion, telefono, correo,sexo) VALUES ($1, $2, $3, $4, $5, $6,$7)`,
-      [nombre, p_apellido, s_apellido, direccion, telefono, correo, sexo]
+
+    const foto = req.file;
+
+    const fotoBuffer = fs.readFileSync(foto.path);
+
+    fs.unlinkSync(foto.path);
+
+    const result = await poolPG.query(
+      `INSERT INTO feligreses (nombre, p_apellido, s_apellido, direccion, telefono, correo,sexo, foto) VALUES ($1, $2, $3, $4, $5, $6,$7, $8) RETURNING *`,
+      [
+        nombre,
+        p_apellido,
+        s_apellido,
+        direccion,
+        telefono,
+        correo,
+        sexo,
+        fotoBuffer,
+      ]
     );
-    res.send("Feligres creado");
+
+    const feligresCreado = result.rows[0];
+
+    res.send(feligresCreado);
   } catch (error) {
     next(error);
   }

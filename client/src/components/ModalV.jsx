@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { Col, Row } from "antd";
 import { Descriptions } from "antd";
+import AvatarFeligres from "./AvatarFeligres";
 
 export default function ModalV({ open, actBotonClose, titulo, feligres }) {
   const items = feligres
@@ -64,8 +65,11 @@ export default function ModalV({ open, actBotonClose, titulo, feligres }) {
               {titulo}
             </Typography>
           </Col>
-          <Col span={24}>
-            <Descriptions className="deta" items={items} />
+          <Col span={5}>
+            <AvatarFeligres imagenBytes={feligres?.profile} />
+          </Col>
+          <Col span={19}>
+            <Descriptions items={items} />
           </Col>
           <Col span={12}></Col>
           <ButtonClose onClick={actBotonClose}>
@@ -83,7 +87,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "60%",
+  width: "80%",
   backgroundColor: "#f4f4f4",
   boxShadow: 2,
   p: 4,

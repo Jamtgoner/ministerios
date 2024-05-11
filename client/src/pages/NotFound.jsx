@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import error from "../assets/404.jpg";
+import error from "../assets/404.png";
 
 export function NotFound() {
   return (
@@ -16,10 +16,10 @@ export function NotFound() {
 const Container = styled.div`
   display: grid;
   place-items: center;
-  background-color: #000000;
   height: 100vh;
   & p {
-    color: #ffffff;
+    font-weight: bold;
+    color: #ff7b7b;
     font-size: 3.5rem;
   }
 `;

@@ -18,20 +18,41 @@ export default function ModalC({ open, handleClose }) {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+    formData.append("nombre", data.nombre);
+    formData.append("p_apellido", data.p_apellido);
+    formData.append("s_apellido", data.s_apellido);
+    formData.append("direccion", data.direccion);
+    formData.append("telefono", data.telefono);
+    formData.append("correo", data.correo);
+    formData.append("sexo", data.sexo);
+    formData.append("foto", data.foto[0]);
+
     await fetch(`http://localhost:3000/feligres`, {
       method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: formData,
     });
-
     console.log(data);
     handleClose();
     reset();
     window.location.reload(false);
-  });
+  };
+
+  // const onSubmit = handleSubmit(async (data) => {
+  //   await fetch(`http://localhost:3000/feligres`, {
+  //     method: "POST",
+  //     body: JSON.stringify(data),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+
+  //   console.log(data);
+  //   handleClose();
+  //   reset();
+  //   window.location.reload(false);
+  // });
 
   return (
     <Modal
@@ -41,7 +62,7 @@ export default function ModalC({ open, handleClose }) {
       sx={modalstyle}
     >
       <Box sx={style}>
-        <form onSubmit={onSubmit} className="row formulario">
+        <form onSubmit={handleSubmit(onSubmit)} className="row formulario">
           <div className="col-md-4">
             <label>Nombre</label>
             <input
@@ -131,6 +152,19 @@ export default function ModalC({ open, handleClose }) {
               <option value="F">Femenino</option>
             </select>
           </div>
+
+          <div className="col-md-6">
+            <label htmlFor="formFile" className="form-label">
+              Foto
+            </label>
+            <input
+              className="form-control"
+              type="file"
+              name="foto"
+              {...register("foto")}
+            />
+          </div>
+
           <Stack
             spacing={2}
             justifyContent="center"

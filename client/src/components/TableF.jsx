@@ -28,7 +28,6 @@ const StyledTableRow = styled(TableRow)(() => ({
   "&:nth-of-type(odd)": {
     backgroundColor: "#fafafa",
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
@@ -40,10 +39,23 @@ export default function TableF() {
   const [selectedFeligres, setSelectedFeligres] = useState(null);
   const [modalType, setModalType] = useState(null);
 
-  const handleOpen = (feligres, type) => {
-    setOpen(true);
-    setModalType(type);
-    setSelectedFeligres(feligres);
+  const handleOpen = async (feligres, type) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/feligres/${feligres.id_feligres}`
+      );
+      if (!response.ok) {
+        console.log("Failed to fetch feligres data");
+      }
+      const data = await response.json();
+      const selectedFeligres = data[0];
+      console.log(selectedFeligres);
+      setSelectedFeligres(selectedFeligres);
+      setModalType(type);
+      setOpen(true);
+    } catch (error) {
+      console.error("Error fetching feligres data:", error);
+    }
   };
 
   const handleClose = () => {
@@ -109,6 +121,7 @@ export default function TableF() {
           actBotonClose={handleClose}
           titulo={"Edición de Feligres"}
           feligres={selectedFeligres}
+          reload={loadFeligreses}
         />
       );
     }

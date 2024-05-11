@@ -10,7 +10,7 @@ import InputMask from "react-input-mask";
 
 import { useForm } from "react-hook-form";
 
-export default function ModalE({ open, actBotonClose, feligres }) {
+export default function ModalE({ open, actBotonClose, feligres, reload }) {
   const {
     register,
     reset,
@@ -40,7 +40,7 @@ export default function ModalE({ open, actBotonClose, feligres }) {
     console.log(data);
     actBotonClose();
     reset();
-    window.location.reload(false);
+    reload();
   });
 
   return (
