@@ -23,9 +23,9 @@ export default function ModalV({ open, actBotonClose, titulo, feligres }) {
           children: `${feligres.p_apellido} ${feligres.s_apellido || ""}`,
         },
         {
-          key: "3",
-          label: "Dirección",
-          children: feligres.direccion,
+          key: "6",
+          label: "Sexo",
+          children: feligres.sexo === "M" ? "Masculino" : "Femenino",
         },
         {
           key: "4",
@@ -35,12 +35,13 @@ export default function ModalV({ open, actBotonClose, titulo, feligres }) {
         {
           key: "5",
           label: "Correo",
+          span: 2,
           children: feligres.correo,
         },
         {
-          key: "6",
-          label: "Sexo",
-          children: feligres.sexo === "M" ? "Masculino" : "Femenino",
+          key: "3",
+          label: "Dirección",
+          children: feligres.direccion,
         },
       ]
     : [];
@@ -87,7 +88,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "80%",
+  width: "60%",
   backgroundColor: "#f4f4f4",
   boxShadow: 2,
   p: 4,
