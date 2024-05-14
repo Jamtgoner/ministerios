@@ -67,7 +67,10 @@ export default function ModalV({ open, actBotonClose, titulo, feligres }) {
             </Typography>
           </Col>
           <Col span={5}>
-            <AvatarFeligres imagenBytes={feligres?.profile} />
+            <AvatarFeligres
+              sexo={feligres.sexo}
+              imagenBytes={feligres?.profile}
+            />
           </Col>
           <Col span={19}>
             <Descriptions items={items} />
