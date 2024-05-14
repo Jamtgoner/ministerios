@@ -81,11 +81,13 @@ export const createFeligres = async (req, res, next) => {
       sexo,
     } = req.body;
 
-    const foto = req.file;
+    let fotoBuffer = null;
 
-    const fotoBuffer = fs.readFileSync(foto.path);
-
-    fs.unlinkSync(foto.path);
+    if (req.file) {
+      const foto = req.file;
+      fotoBuffer = fs.readFileSync(foto.path);
+      fs.unlinkSync(foto.path);
+    }
 
     const result = await poolPG.query(
       `INSERT INTO feligreses (nombre, p_apellido, s_apellido, direccion, telefono, correo,sexo, foto) VALUES ($1, $2, $3, $4, $5, $6,$7, $8) RETURNING *`,
