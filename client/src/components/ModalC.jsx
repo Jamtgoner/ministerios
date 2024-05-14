@@ -39,21 +39,6 @@ export default function ModalC({ open, handleClose }) {
     window.location.reload(false);
   };
 
-  // const onSubmit = handleSubmit(async (data) => {
-  //   await fetch(`http://localhost:3000/feligres`, {
-  //     method: "POST",
-  //     body: JSON.stringify(data),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-
-  //   console.log(data);
-  //   handleClose();
-  //   reset();
-  //   window.location.reload(false);
-  // });
-
   return (
     <Modal
       open={open}
@@ -195,7 +180,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "60%",
+  width: "80%",
   backgroundColor: "#fff",
   boxShadow: 2,
   p: 4,

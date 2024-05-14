@@ -8,40 +8,6 @@ import Modal from "@mui/material/Modal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import NotInterestedIcon from "@mui/icons-material/NotInterested";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 550,
-  bgcolor: "background.paper",
-  boxShadow: 2,
-  p: 4,
-  borderRadius: 3,
-};
-
-const modalstyle = {
-  "& .MuiModal-backdrop": {
-    backgroundColor: "#00000033",
-  },
-};
-
-const ButtonSi = styled(Button)(() => ({
-  color: "#fff",
-  backgroundColor: "#f44336",
-  "&:hover": {
-    backgroundColor: "#d32f2f",
-  },
-}));
-
-const ButtonNo = styled(Button)(() => ({
-  color: "#fff",
-  backgroundColor: "#8e8b8b",
-  "&:hover": {
-    backgroundColor: "#bdbcbc",
-  },
-}));
-
 export default function ModalD({
   open,
   accionBotonSi,
@@ -93,3 +59,38 @@ export default function ModalD({
     </Modal>
   );
 }
+
+//#region ESTILOS
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 550,
+  backgroundColor: "#fff",
+  boxShadow: 2,
+  p: 4,
+  borderRadius: 3,
+};
+
+const modalstyle = {
+  "& .MuiModal-backdrop": {
+    backgroundColor: "#00000033",
+  },
+};
+
+const ButtonSi = styled(Button)(() => ({
+  color: "#fff",
+  backgroundColor: "#f44336",
+  "&:hover": {
+    backgroundColor: "#d32f2f",
+  },
+}));
+
+const ButtonNo = styled(Button)(() => ({
+  color: "#fff",
+  backgroundColor: "#8e8b8b",
+  "&:hover": {
+    backgroundColor: "#bdbcbc",
+  },
+}));
