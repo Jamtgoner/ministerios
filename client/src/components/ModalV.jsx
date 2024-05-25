@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
+import { RiCloseCircleFill } from "react-icons/ri";
 import { Col, Row } from "antd";
 import { Descriptions } from "antd";
 import AvatarFeligres from "./AvatarFeligres";
@@ -77,7 +77,7 @@ export default function ModalV({ open, actBotonClose, titulo, feligres }) {
           </Col>
           <Col span={12}></Col>
           <ButtonClose onClick={actBotonClose}>
-            <CloseIcon />
+            <RiCloseCircleFill />
           </ButtonClose>
         </Row>
       </Box>

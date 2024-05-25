@@ -2,9 +2,9 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Modal from "@mui/material/Modal";
-import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
-import SaveIcon from "@mui/icons-material/Save";
+import { RiCloseCircleFill } from "react-icons/ri";
+import { IoIosSave } from "react-icons/io";
 import Stack from "@mui/material/Stack";
 import InputMask from "react-input-mask";
 
@@ -156,7 +156,7 @@ export default function ModalE({ open, actBotonClose, feligres, reload }) {
             sx={{ mt: 2 }}
           >
             <ButtonSave type="submit">
-              <SaveIcon />
+              <IoIosSave />
             </ButtonSave>
             <ButtonClose
               onClick={() => {
@@ -164,7 +164,7 @@ export default function ModalE({ open, actBotonClose, feligres, reload }) {
                 reset();
               }}
             >
-              <CloseIcon />
+              <RiCloseCircleFill />
             </ButtonClose>
           </Stack>
         </form>

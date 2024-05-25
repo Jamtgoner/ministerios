@@ -5,8 +5,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import DeleteIcon from "@mui/icons-material/Delete";
-import NotInterestedIcon from "@mui/icons-material/NotInterested";
+import { MdDeleteForever, MdNotInterested } from "react-icons/md";
 
 export default function ModalD({
   open,
@@ -42,14 +41,14 @@ export default function ModalD({
         >
           <ButtonSi
             variant="contained"
-            startIcon={<DeleteIcon />}
+            startIcon={<MdDeleteForever />}
             onClick={accionBotonSi}
           >
             Si
           </ButtonSi>
           <ButtonNo
             variant="contained"
-            startIcon={<NotInterestedIcon />}
+            startIcon={<MdNotInterested />}
             onClick={accionBotonNo}
           >
             No

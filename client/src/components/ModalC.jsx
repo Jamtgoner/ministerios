@@ -2,12 +2,11 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Modal from "@mui/material/Modal";
-import CloseIcon from "@mui/icons-material/Close";
+import { IoMdCloseCircle } from "react-icons/io";
+import { IoIosSave } from "react-icons/io";
 import IconButton from "@mui/material/IconButton";
-import SaveIcon from "@mui/icons-material/Save";
 import Stack from "@mui/material/Stack";
 import InputMask from "react-input-mask";
-
 import { useForm } from "react-hook-form";
 
 export default function ModalC({ open, handleClose }) {
@@ -157,7 +156,7 @@ export default function ModalC({ open, handleClose }) {
             sx={{ mt: 2 }}
           >
             <ButtonSave type="submit">
-              <SaveIcon />
+              <IoIosSave />
             </ButtonSave>
             <ButtonClose
               onClick={() => {
@@ -165,7 +164,7 @@ export default function ModalC({ open, handleClose }) {
                 reset();
               }}
             >
-              <CloseIcon />
+              <IoMdCloseCircle />
             </ButtonClose>
           </Stack>
         </form>
