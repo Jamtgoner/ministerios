@@ -8,7 +8,7 @@ import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { MdLogout, MdGroups, MdOutlineFamilyRestroom } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import { ThemeContext } from "../App";
+import { ThemeContext } from "../context/ThemeContext";
 
 export function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const ModSidebaropen = () => {

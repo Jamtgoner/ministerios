@@ -1,17 +1,12 @@
 import MyRoutes from "./routers/MyRoutes";
 import { ConfigProvider } from "antd";
-import React, { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { useState, useContext } from "react";
+import styled from "styled-components";
 import { BrowserRouter } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
-import { Light, Dark } from "./styles/Themes";
-
-export const ThemeContext = React.createContext(null);
+import ThemeContextProvider from "./context/ThemeContext";
 
 function App() {
-  const [theme, setTheme] = useState("light");
-  const themeStyle = theme === "light" ? Light : Dark;
-
   const [sidebarOpen, setSidebarOpen] = useState(true);
   return (
     <>
@@ -22,19 +17,17 @@ function App() {
           },
         }}
       >
-        <ThemeContext.Provider value={{ setTheme, theme }}>
-          <ThemeProvider theme={themeStyle}>
-            <BrowserRouter>
-              <Container className={sidebarOpen ? "sidebarState active" : ""}>
-                <Sidebar
-                  sidebarOpen={sidebarOpen}
-                  setSidebarOpen={setSidebarOpen}
-                />
-                <MyRoutes />
-              </Container>
-            </BrowserRouter>
-          </ThemeProvider>
-        </ThemeContext.Provider>
+        <ThemeContextProvider>
+          <BrowserRouter>
+            <Container className={sidebarOpen ? "sidebarState active" : ""}>
+              <Sidebar
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setSidebarOpen}
+              />
+              <MyRoutes />
+            </Container>
+          </BrowserRouter>
+        </ThemeContextProvider>
       </ConfigProvider>
     </>
   );
