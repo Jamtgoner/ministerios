@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useContext } from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Modal from "@mui/material/Modal";
@@ -8,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import InputMask from "react-input-mask";
 import { useForm } from "react-hook-form";
+import { FeligresesContext } from "../context/FeligresesContext";
 
 export default function ModalC({ open, handleClose }) {
   const {
@@ -16,6 +17,8 @@ export default function ModalC({ open, handleClose }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const { feligreses, setFeligreses } = useContext(FeligresesContext);
 
   const onSubmit = async (data) => {
     const formData = new FormData();
@@ -32,10 +35,11 @@ export default function ModalC({ open, handleClose }) {
       method: "POST",
       body: formData,
     });
-    console.log(data);
+    const response = await fetch("http://localhost:3000/feligreses");
+    const updatedFeligreses = await response.json();
+    setFeligreses(updatedFeligreses);
     handleClose();
     reset();
-    window.location.reload(false);
   };
 
   return (

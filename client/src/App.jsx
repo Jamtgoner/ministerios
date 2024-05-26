@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { BrowserRouter } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
 import ThemeContextProvider from "./context/ThemeContext";
+import FeligresContextProvider from "./context/FeligresesContext";
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -18,15 +19,17 @@ function App() {
         }}
       >
         <ThemeContextProvider>
-          <BrowserRouter>
-            <Container className={sidebarOpen ? "sidebarState active" : ""}>
-              <Sidebar
-                sidebarOpen={sidebarOpen}
-                setSidebarOpen={setSidebarOpen}
-              />
-              <MyRoutes />
-            </Container>
-          </BrowserRouter>
+          <FeligresContextProvider>
+            <BrowserRouter>
+              <Container className={sidebarOpen ? "sidebarState active" : ""}>
+                <Sidebar
+                  sidebarOpen={sidebarOpen}
+                  setSidebarOpen={setSidebarOpen}
+                />
+                <MyRoutes />
+              </Container>
+            </BrowserRouter>
+          </FeligresContextProvider>
         </ThemeContextProvider>
       </ConfigProvider>
     </>

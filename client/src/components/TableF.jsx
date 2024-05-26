@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,6 +12,7 @@ import ModalD from "./ModalD";
 import ModalV from "./ModalV";
 import ModalE from "./ModalE";
 import { Link } from "react-router-dom";
+import { FeligresesContext } from "../context/FeligresesContext";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -34,7 +35,7 @@ const StyledTableRow = styled(TableRow)(() => ({
 }));
 
 export default function TableF() {
-  const [feligreses, setFeligreses] = useState([]);
+  const { feligreses, setFeligreses } = useContext(FeligresesContext);
   const [open, setOpen] = useState(false);
   const [selectedFeligres, setSelectedFeligres] = useState(null);
   const [modalType, setModalType] = useState(null);
